@@ -8,9 +8,13 @@ $--main-font-color: #aaaaaa;
     border: hidden;
     border-radius: 7px;
     padding: 0px;
-    margin: 0 0 0 -8px; 
+    margin: 0; 
     color: $--main-font-color;
     background-color: $--main-bg-color;
+}
+
+header {
+    border-radius: 7px;
 }
 
 .title-bar {
@@ -19,7 +23,6 @@ $--main-font-color: #aaaaaa;
     display: block;
     background-color: $--main-title-color;
     height: 28px;
-    padding: none;
     margin: 0;
 }
 
@@ -105,6 +108,14 @@ $--main-font-color: #aaaaaa;
     display: none !important;
 }
 
+.minimized #restore-button {
+    display: none !important;
+}
+  
+.minimized #max-button {
+    display: block;
+}
+
 .maximized #restore-button {
     display: block !important;
 }
@@ -123,6 +134,7 @@ $--main-font-color: #aaaaaa;
 }
 
 .menu-bar {
+    margin: 28px 0 auto;
     padding-top: 2px;
     height: 24px;
 }
@@ -133,7 +145,6 @@ $--main-font-color: #aaaaaa;
     border: hidden;
     outline: none;
     text-align: left;
-    margin-top: 28px;
 }
 
 #menu-btn:hover {

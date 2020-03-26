@@ -1,4 +1,3 @@
-// Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 
@@ -24,9 +23,35 @@ app.on('ready', function () {
 })
 
 app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') app.quit()
+  if (process.platform !== 'darwin') app.quit()
 })
 
 app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  if (BrowserWindow.getAllWindows().length === 0) createWindow()
+})
+
+ipcMain.on('title:bar', function(event, button) {
+  let currentWindow = BrowserWindow.getFocusedWindow()
+
+  switch (button) {
+    case 'close':
+      currentWindow.close()
+      break
+    
+    case 'max':
+      let size = currentWindow.getSize()
+      if (size[0] > 400 || size[1] > 600) {
+        currentWindow.unmaximize()
+        currentWindow.webContents.send('toggle:maxRestore', false)
+        break
+      }
+      currentWindow.maximize()
+      currentWindow.webContents.send('toggle:maxRestore', true)
+      break
+
+    case 'min':
+      currentWindow.minimize()
+      break    
+  }
+
 })
