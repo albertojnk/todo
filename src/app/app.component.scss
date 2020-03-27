@@ -1,6 +1,4 @@
-$--main-bg-color: #302e2e;
-$--main-title-color: #353535;
-$--main-font-color: #aaaaaa;
+@import "../variables.scss";
 
 .container {
     height: 100vh;
@@ -104,25 +102,30 @@ header {
     filter: invert(1);
 }
 
-#restore-button {
-    display: none !important;
+#restore-button:hover {
+    background: $--main-bg-color;
 }
 
-.minimized #restore-button {
-    display: none !important;
+#restore-button:active {
+    background: rgba(255,255,255,0.2);
 }
-  
-.minimized #max-button {
+
+.minimized-max {
     display: block;
 }
 
-.maximized #restore-button {
-    display: block !important;
-}
-  
-.maximized #max-button {
+.minimized-res {
     display: none;
 }
+
+.maximized-res {
+    display: block;
+}
+
+.maximized-max {
+    display: none;
+}
+  
 
 @media (-webkit-device-pixel-ratio: 1.5), (device-pixel-ratio: 1.5),
 (-webkit-device-pixel-ratio: 2), (device-pixel-ratio: 2),
@@ -133,24 +136,3 @@ header {
   }
 }
 
-.menu-bar {
-    margin: 28px 0 auto;
-    padding-top: 2px;
-    height: 24px;
-}
-
-#menu-btn {
-    background-color: $--main-bg-color;
-    color: $--main-font-color;
-    border: hidden;
-    outline: none;
-    text-align: left;
-}
-
-#menu-btn:hover {
-    filter: brightness(75%);
-}
-
-.menu-bar span {
-    display: flex;
-}

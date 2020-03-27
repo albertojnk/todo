@@ -1,15 +1,17 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { IpcRenderer } from 'electron'
+import { MenuComponent } from './menu/menu.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit, OnChanges {
   private ipc: IpcRenderer
 
-  isMaximized: Boolean = false
+  public isMaximized: Boolean = false
 
   constructor() {
     this.ipc = (<any>window).require('electron').ipcRenderer
@@ -17,16 +19,13 @@ export class AppComponent implements OnInit, OnChanges {
   
   handleTitleBarButtons(button) {
     this.ipc.send('title:bar', button)
-  }
-
-  openMenu() {
-    
+    if (button == 'max' || button == 'restore') {
+      this.isMaximized = !this.isMaximized
+    }
   }
 
   ngOnInit() {
-    this.ipc.on('toggle:maxRestore', function(e, value) {
-      this.isMaximized = value
-    })
+
   }
 
   ngOnChanges() {

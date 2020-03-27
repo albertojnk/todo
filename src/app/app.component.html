@@ -6,11 +6,11 @@
           <img class="icon" src="assets/icons/min-w-10.png" draggable="false" />
         </div>
   
-        <div class="button" [ngClass]="{'minimized': !isMaximized}" id="max-button" (click)="handleTitleBarButtons('max')">
+        <div class="button" [ngClass]="{'minimized-max': !isMaximized, 'maximized-max': isMaximized }" id="max-button" (click)="handleTitleBarButtons('max')">
           <img class="icon" src="assets/icons/max-w-10.png" draggable="false" />
         </div>
   
-        <div class="button" [ngClass]="{'maximized': isMaximized}" id="restore-button"  (click)="handleTitleBarButtons('max')">
+        <div class="button" [ngClass]="{'maximized-res': isMaximized, 'minimized-res': !isMaximized}" id="restore-button"  (click)="handleTitleBarButtons('restore')">
           <img class="icon" src="assets/icons/restore-w-10.png" draggable="false" />
         </div>
   
@@ -20,9 +20,7 @@
       </div>
     </div>
   </header>
-  <div class="menu-bar">
-    <button id="menu-btn" (click)="openMenu()" >Menu</button>
-  </div>
+  <app-menu></app-menu>
   <div class="content-container">
     <label for="newSetup"></label>
     <input type="text" class="text" id="newSetup">
